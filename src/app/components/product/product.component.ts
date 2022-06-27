@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class ProductComponent implements OnInit {
 
   products: Product[] = [];
+  // productResponseModel:ProductResponseModel = {};
   apiUrl = "https://localhost:44386/api/products/getall";
 
   constructor(private httpClient: HttpClient) {
@@ -24,9 +25,10 @@ export class ProductComponent implements OnInit {
   
   getProducts() {
     this.httpClient
-      .get<ProductResponseModel>(this.apiUrl)
-      .subscribe(response => {
-        this.products = response.data
-      })
+    .get<ProductResponseModel>(this.apiUrl)
+    .subscribe(response => {
+      this.products = response.data
+    });
+    console.log("dasdas")
   }
 }
