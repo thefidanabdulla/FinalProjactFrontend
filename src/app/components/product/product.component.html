@@ -1,6 +1,10 @@
 <div *ngIf="dataLoaded == false" class="spinner-border text-danger" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
 <table *ngIf="dataLoaded != false" class="table">
   <thead>
     <tr>
@@ -8,14 +12,16 @@
       <th>ProductName</th>
       <th>CategoryId</th>
       <th>Price</th>
+      <th>VatPrice</th>
       <th>In Stock</th>
     </tr>
   </thead>
   <tr *ngFor="let product of products">
     <td>{{ product.productId }}</td>
-    <td>{{ product.productName }}</td>
+    <td>{{ product.productName |uppercase }}</td>
     <td>{{ product.categoryId }}</td>
     <td>{{ product.unitPrice }}</td>
+    <td>{{ product.unitPrice |vatAdded:10 | currency }}</td>
     <td>{{ product.unitsInStock }}</td>
   </tr>
 </table>
