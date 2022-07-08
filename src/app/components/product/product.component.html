@@ -2,8 +2,11 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Email address</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  <label for="filterText" class="form-label">Search Product</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Enter the product name">
+</div>
+<div *ngIf="filterText" class="alert alert-success ">
+  {{filterText}} aradiniz
 </div>
 <table *ngIf="dataLoaded != false" class="table">
   <thead>
@@ -16,7 +19,7 @@
       <th>In Stock</th>
     </tr>
   </thead>
-  <tr *ngFor="let product of products">
+  <tr *ngFor="let product of products | filterPipe:filterText">
     <td>{{ product.productId }}</td>
     <td>{{ product.productName |uppercase }}</td>
     <td>{{ product.categoryId }}</td>
